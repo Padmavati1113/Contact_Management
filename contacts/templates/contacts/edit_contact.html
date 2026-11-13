@@ -1,0 +1,132 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Edit Contact</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #f4f6fb;
+            padding: 40px;
+        }
+
+        .container {
+            max-width: 650px;
+            margin: auto;
+            background: white;
+            padding: 35px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+        }
+
+        h1 {
+            color: #252b48;
+            margin-bottom: 25px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            border-radius: 7px;
+            font-size: 15px;
+        }
+
+        textarea {
+            height: 90px;
+            resize: vertical;
+        }
+
+        .save-btn {
+            background: #635bdb;
+            color: white;
+            border: none;
+            padding: 13px 25px;
+            border-radius: 7px;
+            cursor: pointer;
+            font-size: 15px;
+        }
+
+        .back-btn {
+            display: inline-block;
+            margin-left: 10px;
+            color: #635bdb;
+            text-decoration: none;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>Edit Contact</h1>
+
+        <form method="POST">
+
+            {% csrf_token %}
+
+            <label>Full Name:</label>
+            <input
+                type="text"
+                name="full_name"
+                value="{{ contact.full_name }}"
+                required
+            >
+
+            <label>Phone Number:</label>
+            <input
+                type="text"
+                name="phone"
+                value="{{ contact.phone }}"
+                required
+            >
+
+            <label>Email Address:</label>
+            <input
+                type="email"
+                name="email"
+                value="{{ contact.email }}"
+            >
+
+            <label>Company:</label>
+            <input
+                type="text"
+                name="company"
+                value="{{ contact.company }}"
+            >
+
+            <label>Address:</label>
+            <textarea name="address">{{ contact.address }}</textarea>
+
+            <button type="submit" class="save-btn">
+                Update Contact
+            </button>
+
+            <a href="/" class="back-btn">
+                Cancel
+            </a>
+
+        </form>
+
+    </div>
+
+</body>
+</html>
